@@ -1,0 +1,17 @@
+{
+  "login": "Kirish",
+  "register": "Ro'yxatdan o'tish",
+  "welcome-body": "Xush kelibsiz, bizning tizim orqali vazifalaringizni o'z vaqtida yarating va topshiring.",
+  "View all assignments": "Barcha topshiriqlarni ko'rish",
+  "email": "Email",
+  "required-email": "Elektron pochta muhim",
+  "password": "Parol",
+  "login-body": "Email va parolni kiriting, rolingizni tanlang va tizimdan foydalaning.",
+  "required-role": "Roleni tanlang",
+  "success-login": "Muvaffaqiyatli, tizimga kirdingiz.",
+  "login-body-for-register": "Akkountingiz mavjud emasmi ?",
+  "name": "Ism",
+  "required-name": "Ism muhim.",
+  "register-body-into-login": "Akkountingiz mavjudmi ?",
+  "success-register": "Muvaffaqiyatli."
+}

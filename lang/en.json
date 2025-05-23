@@ -1,0 +1,17 @@
+{
+  "login": "Login",
+  "register": "Register",
+  "welcome-body": "Welcome, create and submit your tasks on time through our system.",
+  "View all assignments": "View all assignments",
+  "email": "Email",
+  "required-email": "Email is required",
+  "password": "Password",
+  "login-body": "Enter your email and password, select your role, and use the system.",
+  "required-role": "Choose role",
+  "success-login": "Successfully logged in.",
+  "login-body-for-register": "Don't have an account?",
+  "name": "Name",
+  "required-name": "Name is required.",
+  "register-body-into-login": "Do you have an account ?",
+  "success-register": "Successfully."
+}
