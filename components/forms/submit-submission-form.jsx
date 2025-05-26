@@ -6,7 +6,7 @@ import axios, { authAxios } from "@/utils/axios";
 import { toast } from "react-toastify";
 import { ButtonSpinner } from "../loading";
 import Input from "./input";
-import { STUDENT_ROLE, TEACHER_ROLE } from "@/utils/const";
+import { LOCAL_PRIVATE_TOKEN, STUDENT_ROLE, TEACHER_ROLE } from "@/utils/const";
 import Link from "next/link";
 import FilesUpload from "./files-upload";
 
@@ -43,9 +43,16 @@ export default function SubmitSubmissionForm({}) {
         });
       }
 
-      const response = await authAxios.post(
+      const response = await axios.post(
         `/student/submissions/${assignment_id}/submit`,
-        formData
+        formData,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              LOCAL_PRIVATE_TOKEN
+            )}`,
+          },
+        }
       );
 
       toast.success(intl.formatMessage({ id: "success-submitted-submisions" }));

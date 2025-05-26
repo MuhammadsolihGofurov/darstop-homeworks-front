@@ -64,15 +64,14 @@ function page({ info }) {
           <h1 className="text-white font-semibold text-lg sm:text-xl">
             {assignment?.data?.title}
           </h1>
-          {/* <p className="md:w-2/5 text-white">{assignment?.data?.description}</p> */}
         </div>
         {/* submissions */}
         <div className="grid col-span-1 md:grid-cols-3 w-full items-start gap-4">
-          <div className="col-span-1 md:col-span-2 bg-white border border-gray-200 rounded-lg p-5 min-h-[240px]">
+          <div className="col-span-1 md:col-span-2 bg-white border border-gray-200 rounded-lg p-5 min-h-[240px] flex flex-col">
             <p className="text-gray-600 pb-4">{assignment?.data?.description}</p>
             {assignment?.data?.attachments?.map((item, index) => {
               return (
-                <a href={item} key={index} className="text-sm text-main">
+                <a href={item} key={index} className="text-sm text-main pb-1">
                   {intl.formatMessage({ id: "attachment-name" })} {index + 1}
                 </a>
               );

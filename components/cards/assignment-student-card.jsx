@@ -7,7 +7,7 @@ import {
 import Link from "next/link";
 import React from "react";
 
-export default function AssignmentsCard({ data, role = "" }) {
+export default function AssignmentsStudentCard({ data, role = "" }) {
   const colors = [
     "bg-red-500",
     "bg-blue-500",
@@ -51,7 +51,7 @@ export default function AssignmentsCard({ data, role = "" }) {
       </div>
       <div className="flex flex-col justify-end gap-1 h-[160px]">
         <div className="border flex items-center justify-end gap-2 border-t-gray-200 p-3">
-          <Link href={`${SingleAssignmentTeacherUrl}?id=${data?._id}`}>
+          <Link href={`${SingleAssignmentStudentUrl}?id=${data?._id}`}>
             <a
               role="link"
               className="cursor-pointer group"
@@ -85,42 +85,6 @@ export default function AssignmentsCard({ data, role = "" }) {
                 <defs>
                   <clipPath id="clip0_31_35">
                     <rect width="16" height="16" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </a>
-          </Link>
-          <Link href={`${EditAssignmentsTeacherUrl}?id=${data?._id}`}>
-            <a
-              role="link"
-              className="cursor-pointer group"
-              title={`edit detail  ${data?.title}`}
-            >
-              <svg
-                width="17"
-                height="17"
-                viewBox="0 0 17 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clipPath="url(#clip0_31_33)">
-                  <path
-                    d="M11.6108 2.38322C11.7859 2.20812 11.9938 2.06923 12.2226 1.97447C12.4514 1.87971 12.6966 1.83093 12.9442 1.83093C13.1918 1.83093 13.437 1.87971 13.6658 1.97447C13.8945 2.06923 14.1024 2.20812 14.2775 2.38322C14.4526 2.55831 14.5915 2.76618 14.6863 2.99496C14.781 3.22373 14.8298 3.46893 14.8298 3.71655C14.8298 3.96417 14.781 4.20937 14.6863 4.43815C14.5915 4.66692 14.4526 4.87479 14.2775 5.04988L5.27751 14.0499L1.61084 15.0499L2.61084 11.3832L11.6108 2.38322Z"
-                    stroke="#222222"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="group-hover:stroke-main"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_31_33">
-                    <rect
-                      width="16"
-                      height="16"
-                      fill="white"
-                      transform="translate(0.277344 0.38324)"
-                    />
                   </clipPath>
                 </defs>
               </svg>

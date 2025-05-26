@@ -1,4 +1,4 @@
-import { AssignmentsCard, AssignmentsStudentCard } from "@/components/cards";
+import { AssignmentsCard, AssignmentsStudentCard, SubmissionCard } from "@/components/cards";
 import { Pagination } from "@/components/custom";
 import withAuth from "@/components/hoc/with-auth";
 import Seo from "@/components/Seo/Seo";
@@ -15,7 +15,6 @@ import useSWR from "swr";
 function page({ info }) {
   const router = useRouter();
   const intl = useIntl();
-  const { user_info } = useSelector((state) => state.settings);
 
   useEffect(() => {
     const hash = router.asPath.split("#")[1];
@@ -24,8 +23,8 @@ function page({ info }) {
     }
   }, [router.asPath]);
 
-  const { data: assignments } = useSWR(
-    [`/student/assignments/`, router.locale],
+  const { data: submissions } = useSWR(
+    [`/student/submissions/`, router.locale],
     (url) =>
       fetcher(
         url,
@@ -42,27 +41,25 @@ function page({ info }) {
   return (
     <>
       <Seo
-        title={intl.formatMessage({ id: "my-assignments" })}
-        description={intl.formatMessage({ id: "my-assignments" })}
-        body={intl.formatMessage({ id: "my-assignments" })}
+        title={intl.formatMessage({ id: "my-submissions" })}
+        description={intl.formatMessage({ id: "my-submissions" })}
+        body={intl.formatMessage({ id: "my-submissions" })}
       />
       <div className="flex-col flex gap-5 w-full h-screen pt-24">
         <div className="flex w-full justify-between items-center">
           <h1 className="text-primary font-semibold text-lg">
-            {intl.formatMessage({ id: "my-assignments" })}
+            {intl.formatMessage({ id: "my-submissions" })}
           </h1>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full pb-5">
-          {assignments?.data
-            ?.filter((item) => item?.assignedTo?.includes(user_info?._id))
-            ?.map((item, index) => {
-              return <AssignmentsStudentCard data={item} key={index} />;
-            })}
+          {submissions?.data?.map((item, index) => {
+            return <SubmissionCard submission={item} key={index} />;
+          })}
         </div>
         <Pagination
-          total={assignments?.total}
-          limit={assignments?.limit}
-          currentPage={assignments?.currentPage}
+          total={submissions?.total}
+          limit={submissions?.limit}
+          currentPage={submissions?.currentPage}
         />
       </div>
     </>

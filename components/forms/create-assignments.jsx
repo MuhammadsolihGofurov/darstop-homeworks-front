@@ -42,26 +42,23 @@ export default function CreateAssignmentsForm({}) {
     try {
       setReqLoading(true);
 
-      // 1. FormData obyektini yaratish
       const formData = new FormData();
 
-      // 2. Fayllarni qo‘shish (agar `data.files` array bo‘lsa)
       if (data.files && data.files.length > 0) {
         data.files.forEach((file) => {
-          formData.append("attachments", file); // BE expects 'attachments'
+          formData.append("attachments", file);
         });
       }
 
       // 3. Qolgan malumotlarni qo‘shish
       formData.append("title", data.title);
       formData.append("description", data.description);
-      formData.append("dueDate", data.dueDate?.startDate);
-      //   formData.append("assignedTo", JSON.stringify(data.assignedTo)); // Agar array bo‘lsa
+      // formData.append("dueDate", data.dueDate?.startDate);
+      formData.append("dueDate", data.dueDate);
       data.assignedTo.forEach((userId) => {
-        formData.append("assignedTo", userId); // har biri alohida qo‘shiladi
+        formData.append("assignedTo", userId);
       });
 
-      // 4. Yuborish
       const response = await axios.post("/teacher/assignments", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -127,7 +124,22 @@ export default function CreateAssignmentsForm({}) {
           }}
         />
 
-        <DatePickerUi
+        <Input
+          errors={errors?.dueDate}
+          type={"datetime-local"}
+          register={register}
+          name={"dueDate"}
+          title={intl.formatMessage({ id: "dueDate" })}
+          placeholder={intl.formatMessage({ id: "dueDate" })}
+          id={`dueDate`}
+          control={control}
+          required
+          validation={{
+            required: intl.formatMessage({ id: "required-dueDate" }),
+          }}
+        />
+
+        {/* <DatePickerUi
           errors={errors?.dueDate}
           type={"date"}
           register={register}
@@ -140,7 +152,7 @@ export default function CreateAssignmentsForm({}) {
             required: intl.formatMessage({ id: "Required" }),
           }}
           control={control}
-        />
+        /> */}
 
         <div className="sm:col-span-2 col-span-1">
           <Textarea

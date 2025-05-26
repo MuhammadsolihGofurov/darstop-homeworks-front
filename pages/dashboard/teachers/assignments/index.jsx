@@ -88,9 +88,9 @@ function page({ info }) {
           })}
         </div>
         <Pagination
-          total={assignments?.data?.total}
-          limit={assignments?.data?.limit}
-          currentPage={assignments?.data?.currentPage}
+          total={assignments?.total}
+          limit={assignments?.limit}
+          currentPage={assignments?.currentPage}
         />
       </div>
     </>

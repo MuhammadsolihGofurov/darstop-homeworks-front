@@ -14,3 +14,4 @@ export const EditAssignmentsTeacherUrl = "/dashboard/teachers/assignments/edit";
 export const AssignmentStudentUrl = "/dashboard/students/assignments";
 export const SingleAssignmentStudentUrl =
   "/dashboard/students/assignments/detail/";
+export const SubmissionsViewStudentUrl = "/dashboard/students/submissions";

@@ -1,5 +1,6 @@
 {
   "login": "Kirish",
+  "Home": "Asosiy",
   "register": "Ro'yxatdan o'tish",
   "welcome-body": "Xush kelibsiz, bizning tizim orqali vazifalaringizni o'z vaqtida yarating va topshiring.",
   "View all assignments": "Barcha topshiriqlarni ko'rish",
@@ -33,5 +34,19 @@
   "logOut": "Chiqish",
   "success-submitted-submisions": "Muvaffaqiyatli, topshiriqni topshirdingiz.",
   "submit": "Yuborish",
-  "attachment-name": "Biriktirilgan fayl"
+  "attachment-name": "Biriktirilgan fayl",
+  "Give Feedback & Grade": "Fikr-mulohaza va baho bering",
+  "Feedback": "Firk-mulohaza",
+  "Grade": "Ball",
+  "cancel": "Bekor qilish",
+  "grading": "Baholash",
+  "my-submissions": "Mening topshiriqlarim",
+  "submission.status.submitted": "Yuborilgan",
+  "submission.status.graded": "Baholangan",
+  "submission.submittedAt": "Yuborilgan vaqti",
+  "submission.gradedAt": "Baholangan vaqti",
+  "submission.grade": "Baho",
+  "submission.feedback": "Fikr",
+  "submission.score": "Ball",
+  "submission.viewAttachment": "Ilovani ko‘rish"
 }

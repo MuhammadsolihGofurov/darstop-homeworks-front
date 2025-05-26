@@ -1,4 +1,4 @@
-import { getRolesFromLocal, toggleOffanvas } from "@/redux/slice/settings";
+import { getRolesFromLocal, setUserInfo, toggleOffanvas } from "@/redux/slice/settings";
 import {
   LOCAL_PRIVATE_ROLE,
   LOCAL_PRIVATE_TOKEN,
@@ -9,6 +9,7 @@ import {
   AssignmentStudentUrl,
   AssignmentTeacherUrl,
   NotificationsUrl,
+  SubmissionsViewStudentUrl,
 } from "@/utils/router";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
@@ -24,6 +25,7 @@ export default function SideBar() {
   const dispatch = useDispatch();
   const { offcanvas, user_role } = useSelector((state) => state.settings);
 
+
   const menu = [
     {
       id: 1,
@@ -38,7 +40,7 @@ export default function SideBar() {
     },
     {
       id: 2,
-      title: "Notifications",
+      title: "notifications",
       url: `${NotificationsUrl}`,
       forRole: "all",
       icon: `<svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +51,7 @@ export default function SideBar() {
     },
     {
       id: 3,
-      title: "Assignments",
+      title: "my-assignments",
       url: AssignmentTeacherUrl,
       forRole: TEACHER_ROLE,
       icon: `<svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,8 +62,19 @@ export default function SideBar() {
     },
     {
       id: 4,
-      title: "Assignments",
+      title: "my-assignments",
       url: AssignmentStudentUrl,
+      forRole: STUDENT_ROLE,
+      icon: `<svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.58398 19.9882C4.58398 19.3251 4.84738 18.6892 5.31622 18.2204C5.78506 17.7516 6.42094 17.4882 7.08398 17.4882H20.584" stroke="#5F6368" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.08398 2.48816H20.584V22.4882H7.08398C6.42094 22.4882 5.78506 22.2248 5.31622 21.7559C4.84738 21.2871 4.58398 20.6512 4.58398 19.9882V4.98816C4.58398 4.32512 4.84738 3.68923 5.31622 3.22039C5.78506 2.75155 6.42094 2.48816 7.08398 2.48816Z" stroke="#5F6368" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            `,
+    },
+    {
+      id: 5,
+      title: "my-submissions",
+      url: SubmissionsViewStudentUrl,
       forRole: STUDENT_ROLE,
       icon: `<svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4.58398 19.9882C4.58398 19.3251 4.84738 18.6892 5.31622 18.2204C5.78506 17.7516 6.42094 17.4882 7.08398 17.4882H20.584" stroke="#5F6368" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -80,6 +93,7 @@ export default function SideBar() {
   const logOut = () => {
     localStorage.removeItem(LOCAL_PRIVATE_TOKEN);
     localStorage.removeItem(LOCAL_PRIVATE_ROLE);
+    dispatch(setUserInfo(null));
     toast.success(intl.formatMessage({ id: "success" }));
 
     setTimeout(() => {
@@ -119,7 +133,7 @@ export default function SideBar() {
                     }`}
                   >
                     <span dangerouslySetInnerHTML={{ __html: item?.icon }} />
-                    <span>{item.title}</span>
+                    <span>{intl.formatMessage({ id: item.title })}</span>
                   </a>
                 </Link>
               );

@@ -33,18 +33,20 @@ export default function Header() {
             </Link>
           </div>
           {user_info ? (
-            <Link href={`/dashboard/user/settings`}>
-              <a role="link" className="flex items-center gap-2">
-                <div className="flex flex-col items-end gap-0">
-                  <h3 className="text-sm text-primary line-clamp-1 text-end">{user_info?.name}</h3>
-                  <p className="text-xs text-gray-700">
-                    {user_role ?? user_role}
-                  </p>
-                </div>
-                <div className="w-10 h-10 rounded-full bg-gray-300"></div>
-              </a>
-            </Link>
+            // <Link href={`/dashboard/user/settings`}>
+            <div className="flex items-center gap-2">
+              <div className="flex flex-col items-end gap-0">
+                <h3 className="text-sm text-primary line-clamp-1 text-end">
+                  {user_info?.name}
+                </h3>
+                <p className="text-xs text-gray-700">
+                  {user_role ?? user_role}
+                </p>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+            </div>
           ) : (
+            // </Link>
             <AuthBtn />
           )}
         </div>

@@ -1,5 +1,6 @@
 {
   "login": "Login",
+  "Home": "Home",
   "register": "Register",
   "welcome-body": "Welcome, create and submit your tasks on time through our system.",
   "View all assignments": "View all assignments",
@@ -33,5 +34,19 @@
   "logOut": "Log Out",
   "success-submitted-submisions": "Successfully, you have completed the task.",
   "submit": "Submit",
-  "attachment-name": "Attached file"
+  "attachment-name": "Attached file",
+  "Give Feedback & Grade": "Give Feedback & Grade",
+  "Feedback": "Feedback",
+  "Grade": "Grade",
+  "cancel": "Cancel",
+  "grading": "Grade",
+  "my-submissions": "My Submissions",
+  "submission.status.submitted": "Submitted",
+  "submission.status.graded": "Graded",
+  "submission.submittedAt": "Submitted At",
+  "submission.gradedAt": "Graded At",
+  "submission.grade": "Grade",
+  "submission.feedback": "Feedback",
+  "submission.score": "Score",
+  "submission.viewAttachment": "View Attachment"
 }
