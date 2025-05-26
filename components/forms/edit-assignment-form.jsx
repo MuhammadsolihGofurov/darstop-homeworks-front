@@ -82,7 +82,7 @@ export default function EditAssignmentsForm({ old_data }) {
       const formData = {
         title,
         description,
-        dueDate: dueDate?.startDate,
+        dueDate: dueDate,
       };
 
       //   data.assignedTo.forEach((userId) => {
@@ -98,9 +98,9 @@ export default function EditAssignmentsForm({ old_data }) {
       toast.success(intl.formatMessage({ id: "success-updated" }));
 
       //   reset();
-        setTimeout(() => {
-          router.push(`${AssignmentTeacherUrl}`);
-        }, 500);
+      setTimeout(() => {
+        router.push(`${AssignmentTeacherUrl}`);
+      }, 500);
     } catch (e) {
       toast.error(
         e?.response?.data?.message?.title ||
@@ -138,7 +138,22 @@ export default function EditAssignmentsForm({ old_data }) {
           }}
         />
 
-        <DatePickerUi
+        <Input
+          errors={errors?.dueDate}
+          type={"datetime-local"}
+          register={register}
+          name={"dueDate"}
+          title={intl.formatMessage({ id: "dueDate" })}
+          placeholder={intl.formatMessage({ id: "dueDate" })}
+          id={`dueDate`}
+          control={control}
+          required
+          validation={{
+            required: intl.formatMessage({ id: "required-dueDate" }),
+          }}
+        />
+        
+        {/* <DatePickerUi
           errors={errors?.dueDate}
           type={"date"}
           register={register}
@@ -151,7 +166,7 @@ export default function EditAssignmentsForm({ old_data }) {
             required: intl.formatMessage({ id: "Required" }),
           }}
           control={control}
-        />
+        /> */}
 
         <div className="sm:col-span-2 col-span-1">
           <Textarea
