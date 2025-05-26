@@ -77,7 +77,7 @@ function page({ info }) {
           }}
         >
           <div className="absolute top-5 left-5 text-white text-xs py-1 px-2 rounded-full bg-main">
-            {formatDate(assignment?.data?.dueDate)}
+            {formatDate(assignment?.data?.dueDate ?? "")}
           </div>
           <h1 className="text-white font-semibold text-lg sm:text-xl">
             {assignment?.data?.title}

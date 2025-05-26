@@ -54,12 +54,10 @@ export default function EditAssignmentsForm({ old_data }) {
     if (old_data) {
       setValue("title", old_data.title);
       setValue("description", old_data.description);
-      setValue("dueDate", {
-        startDate: new Date(old_data.dueDate),
-        endDate: new Date(old_data.dueDate),
-      });
-      //   setValue("assignedTo", old_data.assignedTo); // array of user IDs
-      //   setValue("files", old_data.attachments); // array of user IDs
+      const formattedDate = new Date(old_data.dueDate)
+        .toISOString()
+        .slice(0, 16); // 'YYYY-MM-DDTHH:MM'
+      setValue("dueDate", formattedDate);
     }
   }, [old_data, setValue]);
 
@@ -67,17 +65,6 @@ export default function EditAssignmentsForm({ old_data }) {
     const { title, description, dueDate } = data;
     try {
       setReqLoading(true);
-      //   const formData = new FormData();
-
-      //   //   if (data.files && data.files.length > 0) {
-      //   //     data.files.forEach((file) => {
-      //   //       formData.append("attachments", file);
-      //   //     });
-      //   //   }
-
-      //   formData.append("title", data.title);
-      //   formData.append("description", data.description);
-      //   formData.append("dueDate", data.dueDate?.startDate);
 
       const formData = {
         title,
@@ -152,7 +139,7 @@ export default function EditAssignmentsForm({ old_data }) {
             required: intl.formatMessage({ id: "required-dueDate" }),
           }}
         />
-        
+
         {/* <DatePickerUi
           errors={errors?.dueDate}
           type={"date"}
