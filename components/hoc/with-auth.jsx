@@ -4,11 +4,15 @@ import { LOCAL_PRIVATE_ROLE, LOCAL_PRIVATE_TOKEN } from "@/utils/const";
 import axios from "@/utils/axios";
 import { ButtonSpinner } from "../loading";
 import { toast } from "react-toastify"; // <-- toast import
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInfo } from "@/redux/slice/settings";
 
 const withAuth = (WrappedComponent) => {
   const AuthComponent = (props) => {
     const router = useRouter();
+    const dispatch = useDispatch();
     const [authorized, setAuthorized] = useState(null); // null - checking
+    const { user_info } = useSelector((state) => state.settings);
 
     useEffect(() => {
       const checkAuth = async () => {
@@ -20,6 +24,7 @@ const withAuth = (WrappedComponent) => {
         if (!token) {
           toast.error("Iltimos, qayta tizimga kiring"); // <-- toast error
           setAuthorized(false);
+          dispatch(setUserInfo(null));
           // localStorage.removeItem(LOCAL_PRIVATE_ROLE);
 
           router.replace("/login");
@@ -35,14 +40,19 @@ const withAuth = (WrappedComponent) => {
 
           if (res.status === 200) {
             setAuthorized(true);
+            if (user_info == null) {
+              dispatch(setUserInfo(res.data.data));
+            }
           } else {
             toast.error("Iltimos, qayta tizimga kiring"); // <-- toast error
             setAuthorized(false);
+            dispatch(setUserInfo(null));
             // localStorage.removeItem(LOCAL_PRIVATE_ROLE);
             router.replace("/login");
           }
         } catch (err) {
           console.error("Auth check error:", err);
+          dispatch(setUserInfo(null));
           // localStorage.removeItem(LOCAL_PRIVATE_ROLE);
           toast.error("Iltimos, qayta tizimga kiring"); // <-- toast error
           setAuthorized(false);

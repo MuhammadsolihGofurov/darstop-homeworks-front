@@ -39,7 +39,7 @@ export default function Input({
 
   return (
     <label className="flex flex-col gap-1 w-full sm:bg-transparent bg-white rounded-full">
-      <span>{title}</span>
+      <span className="text-sm font-normal text-primary pl-6">{title}</span>
       <input
         type={type}
         placeholder={placeholder}

@@ -20,8 +20,12 @@ import "@fancyapps/ui/dist/fancybox.css";
 // import AOS from "aos";
 // import "aos/dist/aos.css";
 import "react-toastify/dist/ReactToastify.css";
-import "../styles/globals.css";
 import { Bounce, Flip, ToastContainer } from "react-toastify";
+// import "flowbite";
+// import "../styles/globals.css";
+// import "flowbite/dist/flowbite.min.css";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();

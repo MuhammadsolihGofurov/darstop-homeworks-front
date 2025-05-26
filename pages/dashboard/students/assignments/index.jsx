@@ -2,6 +2,7 @@ import { AssignmentsCard } from "@/components/cards";
 import { Pagination } from "@/components/custom";
 import withAuth from "@/components/hoc/with-auth";
 import Seo from "@/components/Seo/Seo";
+import { LOCAL_PRIVATE_ROLE } from "@/utils/const";
 import fetcher from "@/utils/fetcher";
 import { CreateAssignmentTeacherUrl } from "@/utils/router";
 import Link from "next/link";
@@ -23,7 +24,7 @@ function page({ info }) {
   }, [router.asPath]);
 
   const { data: assignments } = useSWR(
-    [`/teacher/assignments/own`, router.locale],
+    [`/student/assignments/`, router.locale],
     (url) =>
       fetcher(
         url,
@@ -49,42 +50,10 @@ function page({ info }) {
           <h1 className="text-primary font-semibold text-lg">
             {intl.formatMessage({ id: "my-assignments" })}
           </h1>
-          <Link href={`${CreateAssignmentTeacherUrl}`}>
-            <a
-              role="link"
-              className="flex items-center justify-center bg-accent rounded-md px-5 py-2 font-medium text-base text-white hover:bg-main transition-colors duration-200 gap-1"
-            >
-              <svg
-                width="16"
-                height="17"
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 4.08643V13.4198"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M3.3335 8.75305H12.6668"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span className="small:inline hidden">
-                {intl.formatMessage({ id: "create-assignments-button" })}
-              </span>
-            </a>
-          </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full pb-5">
           {assignments?.data?.map((item, index) => {
-            return <AssignmentsCard data={item} key={index} />;
+            return <AssignmentsCard data={item} key={index} role={localStorage.getItem(LOCAL_PRIVATE_ROLE)}/>;
           })}
         </div>
         <Pagination

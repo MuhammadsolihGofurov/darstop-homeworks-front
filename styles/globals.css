@@ -37,6 +37,14 @@ img {
   object-fit: cover;
 }
 
-.active_link svg path{
-  stroke: #1A73E8;
+.active_link svg path {
+  stroke: #1a73e8;
+}
+
+.date-theme-light {
+  background-color: white !important;
+  color: black !important;
+}
+.data-picker .pointer-events-none {
+  display: none !important;
 }

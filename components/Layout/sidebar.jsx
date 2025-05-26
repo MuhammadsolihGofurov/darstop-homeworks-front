@@ -1,11 +1,22 @@
 import { getRolesFromLocal, toggleOffanvas } from "@/redux/slice/settings";
-import { LOCAL_PRIVATE_ROLE, TEACHER_ROLE } from "@/utils/const";
-import { AssignmentTeacherUrl } from "@/utils/router";
+import {
+  LOCAL_PRIVATE_ROLE,
+  LOCAL_PRIVATE_TOKEN,
+  STUDENT_ROLE,
+  TEACHER_ROLE,
+} from "@/utils/const";
+import {
+  AssignmentStudentUrl,
+  AssignmentTeacherUrl,
+  NotificationsUrl,
+} from "@/utils/router";
+import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function SideBar() {
   const intl = useIntl();
@@ -28,7 +39,7 @@ export default function SideBar() {
     {
       id: 2,
       title: "Notifications",
-      url: "/notifications",
+      url: `${NotificationsUrl}`,
       forRole: "all",
       icon: `<svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.9111 8.89691C18.9111 7.30561 18.279 5.77949 17.1538 4.65427C16.0286 3.52905 14.5024 2.89691 12.9111 2.89691C11.3198 2.89691 9.79371 3.52905 8.66849 4.65427C7.54327 5.77949 6.91113 7.30561 6.91113 8.89691C6.91113 15.8969 3.91113 17.8969 3.91113 17.8969H21.9111C21.9111 17.8969 18.9111 15.8969 18.9111 8.89691Z" stroke="#5F6368" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -47,12 +58,33 @@ export default function SideBar() {
             </svg>
             `,
     },
+    {
+      id: 4,
+      title: "Assignments",
+      url: AssignmentStudentUrl,
+      forRole: STUDENT_ROLE,
+      icon: `<svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.58398 19.9882C4.58398 19.3251 4.84738 18.6892 5.31622 18.2204C5.78506 17.7516 6.42094 17.4882 7.08398 17.4882H20.584" stroke="#5F6368" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.08398 2.48816H20.584V22.4882H7.08398C6.42094 22.4882 5.78506 22.2248 5.31622 21.7559C4.84738 21.2871 4.58398 20.6512 4.58398 19.9882V4.98816C4.58398 4.32512 4.84738 3.68923 5.31622 3.22039C5.78506 2.75155 6.42094 2.48816 7.08398 2.48816Z" stroke="#5F6368" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            `,
+    },
   ];
 
   const toggleOffcanvasFn = () => {
     if (window.innerWidth < 992) {
       dispatch(toggleOffanvas());
     }
+  };
+
+  const logOut = () => {
+    localStorage.removeItem(LOCAL_PRIVATE_TOKEN);
+    localStorage.removeItem(LOCAL_PRIVATE_ROLE);
+    toast.success(intl.formatMessage({ id: "success" }));
+
+    setTimeout(() => {
+      router.push("/login");
+    }, 500);
   };
 
   useEffect(() => {
@@ -68,31 +100,40 @@ export default function SideBar() {
       }`}
     >
       <div
-        className={`flex flex-col gap-4 bg-white transition-all duration-150 h-full w-[320px] lg:w-full px-5 pt-24 ${
+        className={`flex flex-col justify-between pb-5 gap-4 bg-white transition-all duration-150 h-full w-[320px] lg:w-full px-5 pt-24 ${
           offcanvas ? "translate-x-0" : "lg:translate-x-0 -translate-x-full "
         }`}
       >
-        {menu.map((item, index) => {
-          if (item.forRole === "all" || item.forRole === user_role) {
-            return (
-              <Link href={item.url} key={index}>
-                <a
-                  role="link"
-                  onClick={() => toggleOffcanvasFn()}
-                  className={`flex items-center justify-start gap-2 ${
-                    router.asPath == item?.url
-                      ? "active_link text-accent"
-                      : "text-gray-700"
-                  }`}
-                >
-                  <span dangerouslySetInnerHTML={{ __html: item?.icon }} />
-                  <span>{item.title}</span>
-                </a>
-              </Link>
-            );
-          }
-          return null;
-        })}
+        <div className="flex flex-col gap-4">
+          {menu.map((item, index) => {
+            if (item.forRole === "all" || item.forRole === user_role) {
+              return (
+                <Link href={item.url} key={index}>
+                  <a
+                    role="link"
+                    onClick={() => toggleOffcanvasFn()}
+                    className={`flex items-center justify-start gap-2 ${
+                      router.asPath == item?.url
+                        ? "active_link text-accent"
+                        : "text-gray-700"
+                    }`}
+                  >
+                    <span dangerouslySetInnerHTML={{ __html: item?.icon }} />
+                    <span>{item.title}</span>
+                  </a>
+                </Link>
+              );
+            }
+            return null;
+          })}
+        </div>
+        <button
+          onClick={() => logOut()}
+          className="flex items-center justify-center gap-2 bg-white border border-gray-300 text-sm py-2 px-2 rounded-lg hover:bg-primary hover:text-white transition-colors duration-200"
+        >
+          <LogOut size={15} />
+          {intl.formatMessage({ id: "logOut" })}
+        </button>
       </div>
     </div>
   );

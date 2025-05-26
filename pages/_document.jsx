@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import nextConfig from "../next.config";
+import nextConfig from "../next.config.js";
 
 class MyDocument extends Document {
   render() {
@@ -7,8 +7,10 @@ class MyDocument extends Document {
       this.props.__NEXT_DATA__.locale || nextConfig.i18n.defaultLocale;
 
     return (
-      <Html lang={currentLocale}>
-        <Head></Head>
+      <Html data-theme="light" lang={currentLocale}>
+        <Head>
+          <link href="/manifest.json" rel="manifest" />
+        </Head>
         <body>
           <Main />
           <noscript

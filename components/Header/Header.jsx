@@ -36,7 +36,7 @@ export default function Header() {
             <Link href={`/dashboard/user/settings`}>
               <a role="link" className="flex items-center gap-2">
                 <div className="flex flex-col items-end gap-0">
-                  <h3 className="text-sm text-primary">{user_info?.name}</h3>
+                  <h3 className="text-sm text-primary line-clamp-1 text-end">{user_info?.name}</h3>
                   <p className="text-xs text-gray-700">
                     {user_role ?? user_role}
                   </p>

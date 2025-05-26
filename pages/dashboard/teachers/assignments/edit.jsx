@@ -1,5 +1,6 @@
 import { AssignmentsCard } from "@/components/cards";
 import { Pagination } from "@/components/custom";
+import { CreateAssignmentsForm, EditAssignmentsForm } from "@/components/forms";
 import withAuth from "@/components/hoc/with-auth";
 import Seo from "@/components/Seo/Seo";
 import fetcher from "@/utils/fetcher";
@@ -22,8 +23,10 @@ function page({ info }) {
     }
   }, [router.asPath]);
 
-  const { data: assignments } = useSWR(
-    [`/teacher/assignments/own`, router.locale],
+  const assignment_id = router.query.id;
+
+  const { data: assignment } = useSWR(
+    [`/teacher/assignments/${assignment_id}`, router.locale],
     (url) =>
       fetcher(
         url,
@@ -44,54 +47,13 @@ function page({ info }) {
         description={intl.formatMessage({ id: "my-assignments" })}
         body={intl.formatMessage({ id: "my-assignments" })}
       />
-      <div className="flex-col flex gap-5 w-full h-screen pt-24">
-        <div className="flex w-full justify-between items-center">
+      <div className="flex-col flex items-center gap-5 w-full h-screen pt-24">
+        <div className="flex w-full justify-center items-center">
           <h1 className="text-primary font-semibold text-lg">
-            {intl.formatMessage({ id: "my-assignments" })}
+            {intl.formatMessage({ id: "edit-assignments-title" })}
           </h1>
-          <Link href={`${CreateAssignmentTeacherUrl}`}>
-            <a
-              role="link"
-              className="flex items-center justify-center bg-accent rounded-md px-5 py-2 font-medium text-base text-white hover:bg-main transition-colors duration-200 gap-1"
-            >
-              <svg
-                width="16"
-                height="17"
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 4.08643V13.4198"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M3.3335 8.75305H12.6668"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span className="small:inline hidden">
-                {intl.formatMessage({ id: "create-assignments-button" })}
-              </span>
-            </a>
-          </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full pb-5">
-          {assignments?.data?.map((item, index) => {
-            return <AssignmentsCard data={item} key={index} />;
-          })}
-        </div>
-        <Pagination
-          total={assignments?.data?.total}
-          limit={assignments?.data?.limit}
-          currentPage={assignments?.data?.currentPage}
-        />
+        <EditAssignmentsForm old_data={assignment?.data} />
       </div>
     </>
   );

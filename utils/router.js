@@ -1,5 +1,6 @@
 // default
 export const HomeUrl = "/";
+export const NotificationsUrl = "/dashboard/notifications";
 
 // Teachers
 export const AssignmentTeacherUrl = "/dashboard/teachers/assignments";
@@ -7,6 +8,7 @@ export const CreateAssignmentTeacherUrl =
   "/dashboard/teachers/assignments/create";
 export const SingleAssignmentTeacherUrl =
   "/dashboard/teachers/assignments/detail/";
+export const EditAssignmentsTeacherUrl = "/dashboard/teachers/assignments/edit";
 
 // Students
 export const AssignmentStudentUrl = "/dashboard/students/assignments";

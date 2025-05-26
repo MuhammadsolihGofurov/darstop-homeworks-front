@@ -4,7 +4,9 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    // '.s/app/**/*.{js,ts,jsx,tsx,mdx}',
+    // "./node_modules/flowbite-react/**/*.{js,ts,jsx,tsx}",
+    // "./node_modules/flowbite/**/*.{js,ts,jsx,tsx}",
+    "node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
   ],
   darkMode: "class",
   theme: {
@@ -42,7 +44,7 @@ module.exports = {
         xs: "450px",
         // => @media (min-width: 450px) { ... }
 
-        sm: "650px",
+        sm: "577px",
         // => @media (min-width: 576px) { ... }
 
         // ms: "650px",
