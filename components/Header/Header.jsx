@@ -23,12 +23,12 @@ export default function Header() {
                 }`}
               >
                 <img
-                  src="https://www.gstatic.com/classroom/logo_square_rounded.svg"
+                  src="/images/logo.png"
                   alt="classroom"
                   title="classroom"
-                  className="w-6"
+                  className="w-20 sm:w-24"
                 />
-                <span className="text-gray-700">Darstop Homeworks</span>
+                {/* <span className="text-gray-700">Darstop Homeworks</span> */}
               </a>
             </Link>
           </div>
