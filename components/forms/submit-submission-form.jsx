@@ -9,6 +9,7 @@ import Input from "./input";
 import { LOCAL_PRIVATE_TOKEN, STUDENT_ROLE, TEACHER_ROLE } from "@/utils/const";
 import Link from "next/link";
 import FilesUpload from "./files-upload";
+import { AssignmentStudentUrl } from "@/utils/router";
 
 export default function SubmitSubmissionForm({}) {
   const router = useRouter();
@@ -56,6 +57,10 @@ export default function SubmitSubmissionForm({}) {
       );
 
       toast.success(intl.formatMessage({ id: "success-submitted-submisions" }));
+
+      setTimeout(() => {
+        router.push(AssignmentStudentUrl);
+      }, 500);
     } catch (e) {
       toast.error(
         e?.response?.data?.message?.late ||

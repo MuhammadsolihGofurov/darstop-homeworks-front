@@ -31,7 +31,7 @@ export default function LoginForm({}) {
     defaultValues: {
       email: "",
       password: "",
-      role: "",
+      // role: "",
     },
   });
 
@@ -42,13 +42,19 @@ export default function LoginForm({}) {
       const response = await axios.post("/auth/login", data);
 
       localStorage.setItem(LOCAL_PRIVATE_TOKEN, response?.data?.data?.token);
-      localStorage.setItem(LOCAL_PRIVATE_ROLE, data.role);
-
+      
+      const userInfo = await axios.get("/user/me", {
+        headers: {
+          Authorization: `Bearer ${response?.data?.data?.token}`,
+        },
+      });
+      
+      localStorage.setItem(LOCAL_PRIVATE_ROLE, userInfo?.data?.data?.role);
       toast.success(intl.formatMessage({ id: "success-login" }));
 
       reset();
       setTimeout(() => {
-        if (data.role == STUDENT_ROLE) {
+        if (userInfo?.data?.data?.role == STUDENT_ROLE) {
           router.push(DashboardStudentsUrl);
         } else {
           router.push(DashboardTeachersUrl);
@@ -108,7 +114,7 @@ export default function LoginForm({}) {
           }}
         />
 
-        <Input
+        {/* <Input
           errors={errors?.role}
           type={"radio"}
           register={register}
@@ -125,7 +131,7 @@ export default function LoginForm({}) {
             { label: "Student", value: STUDENT_ROLE },
             { label: "Teacher", value: TEACHER_ROLE },
           ]}
-        />
+        /> */}
 
         <div className="flex gap-5 sm:gap-1 items-center justify-center sm:flex-row col-span-1 w-full pt-5">
           <button

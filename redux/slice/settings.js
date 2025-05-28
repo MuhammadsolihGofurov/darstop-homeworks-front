@@ -33,10 +33,10 @@ const settingsSlice = createSlice({
       state.offcanvas = !state.offcanvas;
     },
     getRolesFromLocal: (state, action) => {
-      state.user_role =
-        typeof window !== "undefined"
-          ? localStorage.getItem(LOCAL_PRIVATE_ROLE)
-          : "all";
+      // state.user_role =
+      //   typeof window !== "undefined"
+      //     ? localStorage.getItem(LOCAL_PRIVATE_ROLE)
+      //     : "all";
     },
     setUserInfo: (state, action) => {
       state.user_info = action.payload;
@@ -49,6 +49,7 @@ const settingsSlice = createSlice({
       })
       .addCase(getMe.fulfilled, (state, action) => {
         state.user_info = action.payload;
+        state.user_role = action.payload?.role;
         state.loading = false;
       })
       .addCase(getMe.rejected, (state) => {
