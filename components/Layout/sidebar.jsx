@@ -1,4 +1,8 @@
-import { getRolesFromLocal, setUserInfo, toggleOffanvas } from "@/redux/slice/settings";
+import {
+  getRolesFromLocal,
+  setUserInfo,
+  toggleOffanvas,
+} from "@/redux/slice/settings";
 import {
   LOCAL_PRIVATE_ROLE,
   LOCAL_PRIVATE_TOKEN,
@@ -8,6 +12,8 @@ import {
 import {
   AssignmentStudentUrl,
   AssignmentTeacherUrl,
+  DashboardStudentsUrl,
+  DashboardTeachersUrl,
   NotificationsUrl,
   SubmissionsViewStudentUrl,
 } from "@/utils/router";
@@ -25,12 +31,14 @@ export default function SideBar() {
   const dispatch = useDispatch();
   const { offcanvas, user_role } = useSelector((state) => state.settings);
 
-
   const menu = [
     {
       id: 1,
       title: "Home",
-      url: "/",
+      url:
+        user_role == STUDENT_ROLE
+          ? `${DashboardStudentsUrl}`
+          : `${DashboardTeachersUrl}`,
       forRole: "all",
       icon: `<svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.07324 9.78973L12.0732 2.78973L21.0732 9.78973V20.7897C21.0732 21.3202 20.8625 21.8289 20.4875 22.2039C20.1124 22.579 19.6037 22.7897 19.0732 22.7897H5.07324C4.54281 22.7897 4.0341 22.579 3.65903 22.2039C3.28396 21.8289 3.07324 21.3202 3.07324 20.7897V9.78973Z" stroke="#5F6368" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

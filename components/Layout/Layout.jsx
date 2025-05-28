@@ -13,10 +13,7 @@ const Layout = ({ children }) => {
   const router = useRouter();
   const { offcanvas } = useSelector((state) => state.settings);
 
-  const isSidebar =
-    router.asPath.startsWith("/login") ||
-    router.asPath.startsWith("/register") ||
-    router.asPath.startsWith("/");
+  const isSidebar = !router.asPath.startsWith("/dashboard");
 
   return (
     <>

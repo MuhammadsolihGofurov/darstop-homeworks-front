@@ -13,6 +13,7 @@ import {
   TEACHER_ROLE,
 } from "@/utils/const";
 import Link from "next/link";
+import { DashboardStudentsUrl, DashboardTeachersUrl } from "@/utils/router";
 
 export default function LoginForm({}) {
   const router = useRouter();
@@ -47,7 +48,11 @@ export default function LoginForm({}) {
 
       reset();
       setTimeout(() => {
-        router.push(`/`);
+        if (data.role == STUDENT_ROLE) {
+          router.push(DashboardStudentsUrl);
+        } else {
+          router.push(DashboardTeachersUrl);
+        }
       }, 500);
     } catch (e) {
       toast.error(e?.response?.data?.message);
