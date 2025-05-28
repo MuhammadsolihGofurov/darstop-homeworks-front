@@ -14,7 +14,9 @@ const Layout = ({ children }) => {
   const { offcanvas } = useSelector((state) => state.settings);
 
   const isSidebar =
-    router.asPath.startsWith("/login") || router.asPath.startsWith("/register");
+    router.asPath.startsWith("/login") ||
+    router.asPath.startsWith("/register") ||
+    router.asPath.startsWith("/");
 
   return (
     <>
@@ -119,8 +121,8 @@ const Layout = ({ children }) => {
       {/* <NavBottom /> */}
 
       {/* Scripts */}
-      <Script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></Script>
-      <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></Script>
+      {/* <Script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></Script> */}
+      {/* <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></Script> */}
 
       {/* {settings && <Scripts settings={settings} />} */}
     </>

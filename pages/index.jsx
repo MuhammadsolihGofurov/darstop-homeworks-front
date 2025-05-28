@@ -40,7 +40,7 @@ function page({ info }) {
         <p className="text-gray-800 pb-5 text-center">
           {intl.formatMessage({ id: "welcome-body" })}
         </p>
-        {user_role === "all" ? <AuthBtn /> : <></>}
+        {/* {user_role === "all" ? <AuthBtn /> : <></>}
         {user_role === TEACHER_ROLE ? (
           <Link href={AssignmentTeacherUrl}>
             <a
@@ -64,7 +64,7 @@ function page({ info }) {
           </Link>
         ) : (
           <></>
-        )}
+        )} */}
       </div>
     </>
   );
