@@ -33,30 +33,56 @@ export default function Header() {
             </a>
           </Link>
         </div>
-        {user_info ? (
-          <Link
-            href={
-              user_role == STUDENT_ROLE
-                ? `${DashboardStudentsUrl}`
-                : `${DashboardTeachersUrl}`
-            }
+        <div className="flex items-center gap-3">
+          <div
+            className={`lang items-center flex bg-bg-2 rounded-full p-1 w-auto`}
           >
-            <a role="link" className="flex items-center gap-2 cursor-pointer">
-              <div className="flex flex-col items-end gap-0">
-                <h3 className="text-sm text-primary line-clamp-1 text-end">
-                  {user_info?.name}
-                </h3>
-                <p className="text-xs text-gray-700">
-                  {user_role ?? user_role}
-                </p>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+            <a
+              href={`/uz/${router.asPath}`}
+              title="uz"
+              className={`w-10 h-10 flex rounded-full items-center justify-center ${
+                router.locale == "uz" ? "bg-main text-white" : "text-primary"
+              }`}
+              locale={"uz"}
+            >
+              Uz
             </a>
-          </Link>
-        ) : (
-          // </Link>
-          <AuthBtn />
-        )}
+            <a
+              href={`/en/${router.asPath}`}
+              title="en"
+              className={`w-10 h-10 flex rounded-full items-center justify-center ${
+                router.locale == "en" ? "bg-main text-white" : "text-primary"
+              }`}
+              locale={"en"}
+            >
+              En
+            </a>
+          </div>
+          {user_info ? (
+            <Link
+              href={
+                user_role == STUDENT_ROLE
+                  ? `${DashboardStudentsUrl}`
+                  : `${DashboardTeachersUrl}`
+              }
+            >
+              <a role="link" className="flex items-center gap-2 cursor-pointer">
+                <div className="flex flex-col items-end gap-0">
+                  <h3 className="text-sm text-primary line-clamp-1 text-end">
+                    {user_info?.name}
+                  </h3>
+                  <p className="text-xs text-gray-700">
+                    {user_role ?? user_role}
+                  </p>
+                </div>
+                <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+              </a>
+            </Link>
+          ) : (
+            // </Link>
+            <AuthBtn />
+          )}
+        </div>
       </div>
     </header>
   );
