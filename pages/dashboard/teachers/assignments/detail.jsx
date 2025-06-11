@@ -91,7 +91,7 @@ function page({ info }) {
             .map((submission, index) => {
               const assignment = submission.assignment;
               const student = submission.student;
-              const attachment = assignment.attachments?.[0];
+              const attachment = submission?.attachments?.[0];
 
               return (
                 <div

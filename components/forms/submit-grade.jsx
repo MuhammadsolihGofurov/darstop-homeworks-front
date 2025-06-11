@@ -36,9 +36,9 @@ export default function SubmitGrade({ submission }) {
 
       toast.success(intl.formatMessage({ id: "success" }));
 
-      setTimeout(() => {
-        router.reload();
-      }, 500);
+      // setTimeout(() => {
+      //   router.r();
+      // }, 500);
     } catch (error) {
       console.error("Xatolik yuz berdi:", error);
       toast.error(error?.response?.data?.message);
