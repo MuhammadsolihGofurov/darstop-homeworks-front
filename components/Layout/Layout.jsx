@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 const Layout = ({ children }) => {
   // const { data: settings } = useSWR("/settings", fetcher);
   const router = useRouter();
-  const { offcanvas } = useSelector((state) => state.settings);
 
   const isSidebar = !router.asPath.startsWith("/dashboard");
 

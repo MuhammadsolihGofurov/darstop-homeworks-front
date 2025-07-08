@@ -82,7 +82,26 @@ function page({ info }) {
           <h1 className="text-white font-semibold text-lg sm:text-xl">
             {assignment?.data?.title}
           </h1>
-          <p className="md:w-2/5 text-white line-clamp-3">{assignment?.data?.description}</p>
+          <p className="md:w-2/5 text-white line-clamp-3">
+            {assignment?.data?.description}
+          </p>
+        </div>
+        {/* attachments */}
+        <div className="bg-white p-3 rounded-lg border  w-full flex flex-col gap-3">
+          <h2 className="text-gray-800 text-base">
+            {intl.formatMessage({ id: "attachmentsTitle" })}
+          </h2>
+          {assignment?.data?.attachments?.length > 0 ? (
+            <div className="flex flex-col gap-2">
+              {assignment?.data?.attachments?.map((item, index) => {
+                return <a href={item} target="_blank" className="text-sm text-blue-500">File {index}</a>;
+              })}
+            </div>
+          ) : (
+            <p className="text-sm text-gray-500">
+              {intl.formatMessage({ id: "No files" })}
+            </p>
+          )}
         </div>
         {/* submissions */}
         <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-3">

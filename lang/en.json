@@ -48,5 +48,7 @@
   "submission.grade": "Grade",
   "submission.feedback": "Feedback",
   "submission.score": "Score",
-  "submission.viewAttachment": "View Attachment"
+  "submission.viewAttachment": "View Attachment",
+  "attachmentsTitle": "Attached files",
+  "No files": "No files"
 }

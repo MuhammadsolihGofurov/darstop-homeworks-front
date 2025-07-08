@@ -1,15 +1,22 @@
 import Link from "next/link";
 import { AuthBtn, BarsBtn } from "./details";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { DashboardStudentsUrl, DashboardTeachersUrl } from "@/utils/router";
 import { STUDENT_ROLE } from "@/utils/const";
+import { useEffect } from "react";
+import { getRolesFromLocal } from "@/redux/slice/settings";
 
 export default function Header() {
   const router = useRouter();
   const isSidebar =
     router.asPath.startsWith("/login") || router.asPath.startsWith("/register");
   const { user_info, user_role } = useSelector((state) => state.settings);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getRolesFromLocal());
+  }, []);
 
   return (
     <header className="py-5 border-b border-gray-200 fixed top-0 left-0 w-full z-[1000] bg-white px-5">

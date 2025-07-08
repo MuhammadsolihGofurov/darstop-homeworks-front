@@ -48,5 +48,7 @@
   "submission.grade": "Baho",
   "submission.feedback": "Fikr",
   "submission.score": "Ball",
-  "submission.viewAttachment": "Ilovani ko‘rish"
+  "submission.viewAttachment": "Ilovani ko‘rish",
+  "attachmentsTitle": "Biriktirilgan fayllar",
+  "No files": "Fayllar mavjud emas"
 }
